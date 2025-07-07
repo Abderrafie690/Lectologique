@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Lectologique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tu estilo personalizado -->
+  <link rel="stylesheet" href="scss/style.css">
+</head>
+
+<body>
+  <!-- ✅ HEADER -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="/" data-link>📚 Lectologique</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item" data-show="connected">
+              <a class="nav-link" href="/dashboard" data-link><i class="bi bi-house-fill"></i> Accueil</a>
+            </li>
+            <li class="nav-item" data-show="connected">
+              <a class="nav-link" href="/view-books" data-link><i class="bi bi-book-fill"></i> Mes livres</a>
+            </li>
+            <li class="nav-item" data-show="connected">
+              <a class="nav-link" href="/add-book" data-link><i class="bi bi-plus-circle-fill"></i> Ajouter un livre</a>
+            </li>
+
+            <!-- Admin -->
+            <li class="nav-item" data-show="admin">
+              <a class="nav-link" href="/admin" data-link><i class="bi bi-shield-lock"></i> Dashboard Admin</a>
+            </li>
+
+            <!-- Profil utilisateur -->
+            <li class="nav-item dropdown" data-show="connected">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i> Mon compte
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="/profile" data-link><i class="bi bi-pencil-fill"></i> Profil</a></li>
+                <li><a class="dropdown-item" href="/edit_password" data-link><i class="bi bi-key-fill"></i> Modifier mot de passe</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" id="signout-btn" href="#"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a></li>
+              </ul>
+            </li>
+
+            <!-- Non connectés -->
+            <li class="nav-item" data-show="disconnected">
+              <a class="btn btn-outline-light me-2" href="/register" data-link><i class="bi bi-pencil-square"></i> S'inscrire</a>
+            </li>
+            <li class="nav-item" data-show="disconnected">
+              <a class="btn btn-outline-light" href="/login" data-link><i class="bi bi-box-arrow-in-right"></i> Se connecter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ✅ CONTENIDO DINÁMICO -->
+  <main id="main-page">
+    <!-- Aquí se cargará dinámicamente el contenido de las páginas -->
+  </main>
+
+  <!-- ✅ FOOTER -->
+  <footer class="bg-light text-center text-muted py-3 mt-5 border-top shadow-sm">
+    <div class="container">
+      <p class="mb-1">📚 <strong>Lectologique</strong> — Votre bibliothèque numérique personnelle</p>
+      <small>&copy; <span id="year"></span> Tous droits réservés | Développé avec ❤️ par vous</small>
+    </div>
+  </footer>
+
+  <!-- ✅ JS -->
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script src="Router/router.js" type="module"></script>
+  <script src="js/auth/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?php
+session_start();
+require '../includes/db.php';
+
+// Verificar si el usuario tiene acceso de administrador
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+    echo "Accès refusé.";
+    exit;
+}
+
+// Verificar si se pasó el ID del usuario
+if (isset($_GET['id'])) {
+    $user_id = (int)$_GET['id'];
+
+    // Comprobar si el usuario existe
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch();
+
+    if ($user) {
+        // Eliminar el usuario
+        $sql = "DELETE FROM users WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$user_id]);
+
+        // Redirigir correctamente
+        header("Location: ../manage_user/manage_users.php");
+        exit;
+    } else {
+        echo "Utilisateur introuvable.";
+    }
+} else {
+    echo "ID utilisateur manquant.";
+}
+?>

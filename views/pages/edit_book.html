@@ -1,0 +1,91 @@
+<?php
+session_start();
+require '../includes/db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ../login.php');
+    exit;
+}
+
+if (!isset($_GET['id'])) {
+    echo "ID du livre non fourni.";
+    exit;
+}
+
+$book_id = $_GET['id'];
+$user_id = $_SESSION['user_id'];
+
+$sql = "SELECT * FROM bookss WHERE id = ? AND user_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$book_id, $user_id]);
+$book = $stmt->fetch();
+
+if (!$book) {
+    echo "Livre non trouvé ou accès interdit.";
+    exit;
+}
+?>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title mb-4 text-center">✏️ Modifier le livre</h2>
+
+          <form method="POST" action="../edit_book_process.php" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $book['id'] ?>">
+
+            <div class="mb-3">
+              <label for="title" class="form-label">Titre *</label>
+              <input type="text" class="form-control" name="title" id="title" value="<?= htmlspecialchars($book['title']) ?>" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="auteur" class="form-label">Auteur *</label>
+              <input type="text" class="form-control" name="auteur" id="auteur" value="<?= htmlspecialchars($book['auteur']) ?>" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="genre" class="form-label">Genre</label>
+              <input type="text" class="form-control" name="genre" id="genre" value="<?= htmlspecialchars($book['genre']) ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="etat" class="form-label">État *</label>
+              <select class="form-select" name="etat" id="etat" required>
+                <?php
+                  $etats = ['Neuf', 'Bon', 'Usé'];
+                  foreach ($etats as $etat) {
+                    $selected = $book['etat'] === $etat ? 'selected' : '';
+                    echo "<option value=\"$etat\" $selected>$etat</option>";
+                  }
+                ?>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" name="description" id="description" rows="3"><?= htmlspecialchars($book['description']) ?></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="cover" class="form-label">Changer la couverture</label>
+              <input type="file" class="form-control" name="cover" id="cover" accept="image/*">
+              <?php if ($book['cover_path']): ?>
+                <small class="d-block mt-2 text-muted">Actuelle: <?= htmlspecialchars($book['cover_path']) ?></small>
+              <?php endif; ?>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-warning px-4">
+                <i class="bi bi-pencil-square"></i> Mettre à jour
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
