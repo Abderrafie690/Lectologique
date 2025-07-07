@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Lectologique</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS + Icons -->
-   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <!-- Bootstrap CSS + Icons -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Tu estilo personalizado -->
@@ -16,55 +17,57 @@
 <body>
   <!-- ✅ HEADER -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/" data-link>📚 Lectologique</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/" data-link>📚 Lectologique</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item" data-show="connected">
-              <a class="nav-link" href="/dashboard" data-link><i class="bi bi-house-fill"></i> Accueil</a>
-            </li>
-            <li class="nav-item" data-show="connected">
-              <a class="nav-link" href="/view-books" data-link><i class="bi bi-book-fill"></i> Mes livres</a>
-            </li>
-            <li class="nav-item" data-show="connected">
-              <a class="nav-link" href="/add-book" data-link><i class="bi bi-plus-circle-fill"></i> Ajouter un livre</a>
-            </li>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- CONNECTED USERS -->
+          <li class="nav-item" data-show="connected">
+            <a class="nav-link" href="/dashboard" data-link><i class="bi bi-house-fill"></i> Accueil</a>
+          </li>
+          <li class="nav-item" data-show="connected"><a class="nav-link" href="/view-books" data-link>Mes livres</a>
+          </li>
 
-            <!-- Admin -->
-            <li class="nav-item" data-show="admin">
-              <a class="nav-link" href="/admin" data-link><i class="bi bi-shield-lock"></i> Dashboard Admin</a>
-            </li>
+          <li class="nav-item" data-show="connected">
+            <a class="nav-link" href="/add-book" data-link><i class="bi bi-plus-circle-fill"></i> Ajouter un livre</a>
+          </li>
 
-            <!-- Profil utilisateur -->
-            <li class="nav-item dropdown" data-show="connected">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown">
-                <i class="bi bi-person-circle"></i> Mon compte
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="/profile" data-link><i class="bi bi-pencil-fill"></i> Profil</a></li>
-                <li><a class="dropdown-item" href="/edit_password" data-link><i class="bi bi-key-fill"></i> Modifier mot de passe</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" id="signout-btn" href="#"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a></li>
-              </ul>
-            </li>
+          <!-- ADMIN ONLY -->
+          <li class="nav-item" data-show="admin">
+            <a class="nav-link" href="/admin" data-link><i class="bi bi-shield-lock"></i> Dashboard Admin</a>
+          </li>
 
-            <!-- Non connectés -->
-            <li class="nav-item" data-show="disconnected">
-              <a class="btn btn-outline-light me-2" href="/register" data-link><i class="bi bi-pencil-square"></i> S'inscrire</a>
-            </li>
-            <li class="nav-item" data-show="disconnected">
-              <a class="btn btn-outline-light" href="/login" data-link><i class="bi bi-box-arrow-in-right"></i> Se connecter</a>
-            </li>
-          </ul>
-        </div>
+          <!-- USER DROPDOWN -->
+          <li class="nav-item dropdown" data-show="connected">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle"></i> Mon compte
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/profile" data-link><i class="bi bi-pencil-fill"></i> Profil</a></li>
+              <li><a class="dropdown-item" href="/edit-password" data-link><i class="bi bi-key-fill"></i> Modifier mot de passe</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" id="signout-btn" href="#"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a></li>
+            </ul>
+          </li>
+
+          <!-- DISCONNECTED USERS -->
+          <li class="nav-item" data-show="disconnected">
+            <a class="btn btn-outline-light me-2" href="/register" data-link><i class="bi bi-pencil-square"></i> S'inscrire</a>
+          </li>
+          <li class="nav-item" data-show="disconnected">
+            <a class="btn btn-outline-light" href="/login" data-link><i class="bi bi-box-arrow-in-right"></i> Se connecter</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+
 
   <!-- ✅ CONTENIDO DINÁMICO -->
   <main id="main-page">
