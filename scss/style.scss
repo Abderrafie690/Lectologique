@@ -1,2 +1,89 @@
 @import url("/node_modules/bootstrap-icons/font/bootstrap-icons.css");
 @import 'custom';
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  background-color: #111; // ou utilise bg-dark via Bootstrap
+  color: #f8f9fa; // blanc très clair (utilisé par Bootstrap pour le texte clair)
+
+  p, small, h3 {
+    color: #f8f9fa; // assure une bonne lisibilité de tout le texte
+  }
+
+  // Pour renforcer un contraste sur les titres ou liens
+  h3 {
+    color: #0d6efd; // bleu Bootstrap
+  }
+
+  a {
+    color: #f8f9fa;
+    text-decoration: none;
+
+    &:hover {
+      color: #adb5bd; // gris clair au survol
+    }
+  }
+}
+.navbar {
+  background-color: #0d6efd !important; // bleu Bootstrap
+  color: #fff;
+
+  .nav-link,
+  .navbar-brand,
+  .dropdown-toggle {
+    color: #fff !important; // blanc pur
+    opacity: 1 !important; // ⚠️ enlève tout effet de transparence
+  }
+
+  .nav-link:hover,
+  .dropdown-item:hover {
+    color: #ffc107 !important; // exemple : jaune Bootstrap pour hover
+  }
+}
+
+main {
+  flex: 1;
+}
+// Déclaration des variables (à adapter si tu les as déjà définies ailleurs)
+$font-family-serif: 'Georgia', serif;
+$paragraph-size: 18px;
+
+// Style des paragraphes
+p {
+  font-family: $font-family-serif; // Utilise une police avec empattement pour les paragraphes
+  font-size: $paragraph-size;      // Taille du texte définie à 18 pixels
+  line-height: 1.6;                // Hauteur de ligne confortable pour la lecture
+  color: #333;                     // Couleur du texte légèrement foncée
+  margin-bottom: 1rem;            // Espace en bas du paragraphe
+}
+// 🔵 Imagen de fondo solo para el HERO principal
+.hero-banner {
+  min-height: 80vh;
+  background-image: url('/assets/images/Lectologique.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center; // Centra verticalmente el contenido
+  color: white;
+}
+
+.hero-banner .row {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 10px;
+}
+.btn-outline-secondary {
+  background-color: #6c757d; /* gris Bootstrap */
+  color: white;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

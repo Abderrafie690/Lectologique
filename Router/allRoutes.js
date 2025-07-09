@@ -3,7 +3,8 @@ import Route from "./Route.js";
 export const websiteName = "Lectologique";
 
 export const allRoutes = [
-  new Route("/", "Accueil", "views/pages/home.html", ""),
+  new Route("/", "Accueil", "views/pages/home.html", ),
+
   new Route("/galerie", "Galerie", "views/pages/general/galerie.html", ""),
   new Route("/dashboard", "Tableau de bord", "views/pages/dashboard.html", "js/auth/dashboard.js"),
   new Route("/profile", "Profil", "views/pages/auth/profile.html", "js/auth/profile.js"),
