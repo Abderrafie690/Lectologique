@@ -1,38 +1,57 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('#registerForm');
+//Implémenter le JS de ma page
 
-  form?.addEventListener('submit', async e => {
-    e.preventDefault();
+const inputNom = document.getElementById("NomInput");
+const inputPreNom = document.getElementById("PrenomInput");
+const inputMail = document.getElementById("EmailInput");
+const inputPassword = document.getElementById("PasswordInput");
+const inputValidationPassword = document.getElementById("ValidatePasswordInput");
+const btnVlidation = document.getElementById("btn-validation-inscription");
 
-    const formData = new FormData(form);
-    const password = formData.get('password');
-    const confirm = formData.get('confirm');
+inputNom.addEventListener("keyup", validateForm); 
+inputPreNom.addEventListener("keyup", validateForm);
+inputMail.addEventListener("keyup", validateForm);
+inputPassword.addEventListener("keyup", validateForm);
+inputValidationPassword.addEventListener("keyup", validateForm);
 
-    if (password !== confirm) {
-      const alert = document.querySelector('#registerError');
-      alert.textContent = "Les mots de passe ne correspondent pas.";
-      alert.classList.remove('d-none');
-      return;
+//Function permettant de valider tout le formulaire
+function validateForm(){
+    const nomOk = validateRequired(inputNom);
+    const prenomOk = validateRequired(inputPreNom);
+    const mailOk = validateMail(inputMail);
+
+    if(nomOk && prenomOk && mailOk){
+        btnVlidation.disables = false;
     }
-
-    try {
-      const response = await fetch('../register_api.php', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        window.location.href = '/dashboard';
-      } else {
-        const alert = document.querySelector('#registerError');
-        alert.textContent = result.message;
-        alert.classList.remove('d-none');
-      }
-
-    } catch (err) {
-      console.error('Erreur réseau:', err);
+    else{
+        btnVlidation.disabled = true;
     }
-  });
-});
+}
+function validateMail(input){
+    //Définir mon regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mailUser = input.value;
+    if(mailUser.match(emailRegex)){
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid"); 
+        return true;
+    
+    }
+    else{
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        return false;
+        
+    }
+}
+function validateRequired(input){
+    if(input.value != ''){
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid"); 
+        return true;
+    }
+    else{
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+         return false;
+    }
+}
