@@ -13,7 +13,7 @@ function checkCredentials(){
         const token = "lkjsdngfljsqdnglkjsdbglkjqskjgkfjgbqslkfdgbskldfgdfgsdgf";
         setToken(token);
 
-       // setCookie(RoleCookieName, "admin", 7); // ✅ GUARDAR ANTES DE REDIRIGIR
+        setCookie(roleCookieName, "admin", 7); // ✅ GUARDAR ANTES DE REDIRIGIR
 
         window.location.replace("/"); // ✅ REDIRECCIÓN AL FINAL
     } else {

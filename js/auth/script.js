@@ -9,6 +9,9 @@ const roleCookieName = "role";
   //if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);
   //}
+  function getRole(){
+    return getCookie(roleCookieName);
+  }
 
   //showAndHideElementsForRoles(); // Aplica visibilidad según roles
 //});
@@ -29,17 +32,12 @@ function isConnected() {
     return true;
   }
 }
-if(isConnected()){
-  alert("je suis connecté");
-}
-else{
-  alert("je ne suis pas connecté");
-}
+
 
 // --- SIGNOUT ---
 function logout() {
   eraseCookie(tokenCookieName);
- // eraseCookie(roleCookieName);
+  eraseCookie(roleCookieName);
   window.location.reload();
 }
 
@@ -67,30 +65,32 @@ function getCookie(name) {
 function eraseCookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
-/*
+
 // --- VISIBILIDAD POR ROL ---
 function showAndHideElementsForRoles() {
   const userConnected = isConnected();
   const role = getRole();
 
-  document.querySelectorAll('[data-show]').forEach((el) => {
-    switch (el.dataset.show) {
-      case 'disconnected':
-        if (userConnected) el.classList.add("d-none");
-        break;
+  let allElementsToEdit = document.querySelectorAll('[data-show]');
+ allElementsToEdit.forEach(element => {
+  switch (element.dataset.show) {
+    case 'disconnected':
+      if (userConnected) element.classList.add("d-none"); // ✅ OK
+      break;
+
       case 'connected':
-        if (!userConnected) el.classList.add("d-none");
+        if (!userConnected) element.classList.add("d-none");
         break;
       case 'admin':
-        if (!userConnected || role !== "ROLE_ADMIN") el.classList.add("d-none");
+        if (!userConnected || role !== "ROLE_ADMIN") element.classList.add("d-none");
         break;
       case 'client':
-        if (!userConnected || role !== "ROLE_CLIENT") el.classList.add("d-none");
+        if (!userConnected || role !== "ROLE_CLIENT") element.classList.add("d-none");
         break;
     }
   });
 }
-
+/*
 // --- SANITIZAR TEXTO ---
 function sanitizeHtml(text) {
   const temp = document.createElement('div');
