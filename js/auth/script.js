@@ -1,16 +1,17 @@
 // script.js
 const tokenCookieName = "accesstoken";
+const logoutBtn = document.getElementById("logout-btn");
 const roleCookieName = "role";
-const apiUrl = "http://localhost/lectologique/api/"; // ⚠️ Cambia según tu entorno
+//const apiUrl = "http://localhost/lectologique/api/"; // ⚠️ Cambia según tu entorno
 
-document.addEventListener('DOMContentLoaded', () => {
-  const signoutBtn = document.getElementById("signout-btn");
-  if (signoutBtn) {
-    signoutBtn.addEventListener("click", signout);
-  }
+//document.addEventListener('DOMContentLoaded', () => {
+  //const logoutBtn = document.getElementById("logout-btn");
+  //if (logoutBtn) {
+    logoutBtn.addEventListener("click", logout);
+  //}
 
-  showAndHideElementsForRoles(); // Aplica visibilidad según roles
-});
+  //showAndHideElementsForRoles(); // Aplica visibilidad según roles
+//});
 
 // --- TOKEN & ROLE ---
 function setToken(token) {
@@ -19,17 +20,26 @@ function setToken(token) {
 function getToken() {
   return getCookie(tokenCookieName);
 }
-function getRole() {
-  return getCookie(roleCookieName);
-}
+
 function isConnected() {
-  return !(getToken() == null || getToken === undefined);
+  if(getToken() == null || getToken == undefined){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+if(isConnected()){
+  alert("je suis connecté");
+}
+else{
+  alert("je ne suis pas connecté");
 }
 
 // --- SIGNOUT ---
-function signout() {
+function logout() {
   eraseCookie(tokenCookieName);
-  eraseCookie(roleCookieName);
+ // eraseCookie(roleCookieName);
   window.location.reload();
 }
 
@@ -57,7 +67,7 @@ function getCookie(name) {
 function eraseCookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
-
+/*
 // --- VISIBILIDAD POR ROL ---
 function showAndHideElementsForRoles() {
   const userConnected = isConnected();
@@ -105,3 +115,4 @@ function getInfosUser() {
       console.error("Erreur utilisateur:", err);
     });
 }
+*/

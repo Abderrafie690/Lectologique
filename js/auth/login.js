@@ -1,16 +1,19 @@
 const mailInput = document.getElementById("EmailInput");
 const passwordInput = document.getElementById("PasswordInput");
-const btnSignin = document.getElementById("btnSignin");
+const btnlogin = document.getElementById("btnlogin");
 
 
 
-btnSignin.addEventListener("click", checkCredentials);
+btnlogin.addEventListener("click", checkCredentials);
 
 function checkCredentials(){
     if(mailInput.value == "test@mail.com" && passwordInput.value == "123"){
-        alert("vous êtes connecté");
+        
 
-      
+        const token = "lkjsdngfljsqdnglkjsdbglkjqskjgkfjgbqslkfdgbskldfgdfgsdgf";
+        setToken(token);
+
+       // setCookie(RoleCookieName, "admin", 7); // ✅ GUARDAR ANTES DE REDIRIGIR
 
         window.location.replace("/"); // ✅ REDIRECCIÓN AL FINAL
     } else {

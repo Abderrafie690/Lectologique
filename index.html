@@ -46,6 +46,8 @@
             <li class="nav-item" data-show="connected">
             <a class="nav-link" href="/add-book" data-link><i class="bi bi-plus-circle-fill"></i> Ajouter un livre</a>
           </li>
+          
+          
 
           <!-- ADMIN ONLY -->
           <li class="nav-item" data-show="admin">
@@ -61,17 +63,18 @@
               <li><a class="dropdown-item" href="/profile" data-link><i class="bi bi-pencil-fill"></i> Profil</a></li>
               <li><a class="dropdown-item" href="/edit-password" data-link><i class="bi bi-key-fill"></i> Modifier mot de passe</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" id="signout-btn" href="#"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a></li>
+              
             </ul>
           </li>
 
           <!-- DISCONNECTED USERS -->
+         
           <li class="nav-item" data-show="disconnected">
-            <a class="btn btn-outline-light me-2" href="/register" data-link><i class="bi bi-pencil-square"></i> S'inscrire</a>
-          </li>
-          <li class="nav-item" data-show="disconnected">
-            <a class="btn btn-outline-light" href="/login" data-link><i class="bi bi-box-arrow-in-right"></i> Se connecter</a>
-          </li>
+            <a class="nav-link" href="/login">Connexion</a>
+                </li>
+                  <li class="nav-item" data-show="connected">
+                        <button class="nav-link" id="logout-btn">Déconnexion</button>
+                  </li>
         </ul>
       </div>
     </div>
