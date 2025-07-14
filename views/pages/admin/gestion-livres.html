@@ -1,0 +1,34 @@
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center text-primary fw-bold">
+    <i class="bi bi-journal-bookmark-fill"></i> Gestion des livres
+  </h2>
+
+  <div class="mb-4 d-flex justify-content-between">
+    <a href="/admin" data-link class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left-circle"></i> Retour au menu
+    </a>
+    <button id="register-btn" class="btn btn-outline-danger">
+      <i class="bi bi-box-arrow-right"></i> Déconnexion
+    </button>
+  </div>
+
+  <div class="table-responsive shadow rounded">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>ID</th>
+          <th>Titre</th>
+          <th>Auteur</th>
+          <th>Genre</th>
+          <th>État</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="books-table-body">
+        <!-- Les livres seront injectés ici via JS -->
+      </tbody>
+    </table>
+  </div>
+</div>

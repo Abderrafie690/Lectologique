@@ -33,11 +33,11 @@
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto">
           <!-- CONNECTED USERS -->
-          <li class="nav-item" data-show="connected">
+          <li class="nav-item" data-show="disconnected">
            <a class="nav-link" href="/" data-link><i class="bi bi-house-fill"></i> Accueil</a>
 
           </li>
-          <li class="nav-item" data-show="connected"><a class="nav-link" href="/view-books" data-link>Mes livres</a>
+          <li class="nav-item" data-show="connected"><a class="nav-link" href="/mes-livres" data-link>Mes livres</a>
           </li>
           <li class="nav-item" data-show="connected"><a class="nav-link" href="/allResa" data-link>Réservations</a>
           </li>
@@ -46,12 +46,14 @@
             <li class="nav-item" data-show="connected">
             <a class="nav-link" href="/add-book" data-link><i class="bi bi-plus-circle-fill"></i> Ajouter un livre</a>
           </li>
-          
+          <li class="nav-item" data-show="connected">
+            <a class="nav-link" href="/gestion-livres" data-link><i class="bi bi-plus-circle-fill"></i> gestion-livres</a>
+          </li>
           
 
           <!-- ADMIN ONLY -->
-          <li class="nav-item" data-show="admin">
-            <a class="nav-link" href="/admin" data-link><i class="bi bi-shield-lock"></i> Dashboard Admin</a>
+          <li class="nav-item" data-show="connected">
+            <a class="nav-link" href="/dashboard" data-link><i class="bi bi-shield-lock"></i> Dashboard</a>
           </li>
 
           <!-- USER DROPDOWN -->
@@ -73,7 +75,7 @@
             <a class="nav-link" href="/login">Connexion</a>
                 </li>
                   <li class="nav-item" data-show="connected">
-                        <button class="nav-link" id="logout-btn">Déconnexion</button>
+                        <button class="nav-link" id="register-btn">Déconnexion</button>
                   </li>
         </ul>
       </div>

@@ -1,13 +1,13 @@
 // script.js
 const tokenCookieName = "accesstoken";
-const logoutBtn = document.getElementById("logout-btn");
+const registertBtn = document.getElementById("register-btn");
 const roleCookieName = "role";
 //const apiUrl = "http://localhost/lectologique/api/"; // ⚠️ Cambia según tu entorno
 
 //document.addEventListener('DOMContentLoaded', () => {
   //const logoutBtn = document.getElementById("logout-btn");
   //if (logoutBtn) {
-    logoutBtn.addEventListener("click", logout);
+    registertBtn.addEventListener("click", register);
   //}
   function getRole(){
     return getCookie(roleCookieName);
@@ -35,7 +35,7 @@ function isConnected() {
 
 
 // --- SIGNOUT ---
-function logout() {
+function register() {
   eraseCookie(tokenCookieName);
   eraseCookie(roleCookieName);
   window.location.reload();
@@ -72,24 +72,43 @@ function showAndHideElementsForRoles() {
   const role = getRole();
 
   let allElementsToEdit = document.querySelectorAll('[data-show]');
- allElementsToEdit.forEach(element => {
-  switch (element.dataset.show) {
-    case 'disconnected':
-      if (userConnected) element.classList.add("d-none"); // ✅ OK
-      break;
+  allElementsToEdit.forEach(element => {
+    switch (element.dataset.show) {
+      case 'disconnected':
+        if (userConnected) {
+          element.classList.add("d-none");
+        } else {
+          element.classList.remove("d-none");
+        }
+        break;
 
       case 'connected':
-        if (!userConnected) element.classList.add("d-none");
+        if (!userConnected) {
+          element.classList.add("d-none");
+        } else {
+          element.classList.remove("d-none");
+        }
         break;
+
       case 'admin':
-        if (!userConnected || role !== "ROLE_ADMIN") element.classList.add("d-none");
+        if (!userConnected || role !== "admin") {
+          element.classList.add("d-none");
+        } else {
+          element.classList.remove("d-none");
+        }
         break;
+
       case 'client':
-        if (!userConnected || role !== "ROLE_CLIENT") element.classList.add("d-none");
+        if (!userConnected || role !== "client") {
+          element.classList.add("d-none");
+        } else {
+          element.classList.remove("d-none");
+        }
         break;
     }
   });
 }
+
 /*
 // --- SANITIZAR TEXTO ---
 function sanitizeHtml(text) {
