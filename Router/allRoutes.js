@@ -4,7 +4,7 @@ export const websiteName = "Lectologique";
 
 export const allRoutes = [
   new Route("/", "Accueil", "views/pages/home.html", []),
-  new Route("/galerie", "Galerie", "views/pages/general/galerie.html", []),
+  new Route("/galerie", "Galerie", "views/pages/general/galerie.html", [], "js/auth/galerie.js"),
   new Route("/allResa", "Vos réservations", "views/reservations/allResa.html", ["client"]),
   new Route("/reserver", "réserver", "views/pages/reserver.html", ["client"]),
   new Route("/dashboard", "Tableau de bord", "views/pages/dashboard.html", ["admin"] ),

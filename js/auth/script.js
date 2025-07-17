@@ -88,7 +88,7 @@ function showAndHideElementsForRoles() {
   });
 }
 
-/*
+
 // --- SANITIZAR TEXTO ---
 function sanitizeHtml(text) {
   const temp = document.createElement('div');
@@ -96,7 +96,7 @@ function sanitizeHtml(text) {
   return temp.innerHTML;
 }
 
-// --- OBTENER DATOS DE USUARIO ---
+/*// --- OBTENER DATOS DE USUARIO ---
 function getInfosUser() {
   const headers = new Headers();
   headers.append("X-AUTH-TOKEN", getToken());

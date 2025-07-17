@@ -132,7 +132,8 @@ fetch("https://127.0.0.1:8000/api/registration", requestOptions)
         console.log("Token guardado:", getCookie("accesstoken"));
         const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKE_PAYLOAD.FAKE_SIGNATURE";
         setCookie("accesstoken", fakeToken, 7);
-        setCookie("role", "user", 7); // Opcional si usas roles
+        setCookie("role", "admin", 7);
+        console.log(document.cookie); // Opcional si usas roles
 
   
 

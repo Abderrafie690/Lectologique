@@ -40,7 +40,8 @@ function checkCredentials(){
         alert("Bravo vous êtes maintenant connecté.");
         const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKE_PAYLOAD.FAKE_SIGNATURE";
         setCookie("accesstoken", fakeToken, 7);
-        setCookie("role", "user", 7); // Opcional si usas roles
+        setCookie("role", "admin", 7);
+        console.log(document.cookie); // Opcional si usas roles
         document.location.href = "/login";
 
         console.log("Token guardado:", getCookie("accesstoken"));
