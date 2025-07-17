@@ -5,7 +5,12 @@ const inputPreNom = document.getElementById("PrenomInput");
 const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("PasswordInput");
 const inputValidationPassword = document.getElementById("ValidatePasswordInput");
-const btnVlidation = document.getElementById("btn-validation-inscription");
+const btnValidation = document.getElementById("btn-validation-inscription");
+const formInscription = document.getElementById("formulaireInscription");
+
+
+
+
 
 inputNom.addEventListener("keyup", validateForm); 
 inputPreNom.addEventListener("keyup", validateForm);
@@ -13,21 +18,23 @@ inputMail.addEventListener("keyup", validateForm);
 inputPassword.addEventListener("keyup", validateForm);
 inputValidationPassword.addEventListener("keyup", validateForm);
 
+btnValidation.addEventListener("click", inscrireUtilisateur);
+
 //Function permettant de valider tout le formulaire
 function validateForm(){
     const nomOk = validateRequired(inputNom);
     const prenomOk = validateRequired(inputPreNom);
     const mailOk = validateMail(inputMail);
     const passwordOk = validatePassword(inputPassword);
-     const passwordConfirmOK = validateConfirmationPassword( inputPassword, inputValidationPassword);
+    const passwordConfirmOK = validateConfirmationPassword( inputPassword, inputValidationPassword);
 
 
 
     if(nomOk && prenomOk && mailOk && passwordOk && passwordConfirmOK){
-        btnVlidation.disables = false;
+        btnValidation.disabled = false;
     }
     else{
-        btnVlidation.disabled = true;
+        btnValidation.disabled = true;
     }
 }
 function validateConfirmationPassword(inputPwd, inputConfirmPwd){
@@ -86,4 +93,51 @@ function validateRequired(input){
         input.classList.add("is-invalid");
          return false;
     }
+}
+function inscrireUtilisateur() {
+    let dataForm = new FormData(formInscription);
+    
+
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+let raw = JSON.stringify({
+    "firstName": dataForm.get("nom"),
+    "lastName": dataForm.get("prenom"),
+    "email": dataForm.get("email"),
+    "password": dataForm.get("password")
+});
+
+let requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+};
+
+fetch("https://127.0.0.1:8000/api/registration", requestOptions)
+  
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+        else{
+            alert("Erreur lors de l'inscription");
+        }
+    })
+    .then(result => {
+        alert("Bravo "+dataForm.get("prenom")+", vous êtes maintenant inscrit, vous pouvez vous connecter.");
+        document.location.href="/login";
+        console.log("Token guardado:", getCookie("accesstoken"));
+        const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKE_PAYLOAD.FAKE_SIGNATURE";
+        setCookie("accesstoken", fakeToken, 7);
+        setCookie("role", "user", 7); // Opcional si usas roles
+
+  
+
+    })
+    .catch(error => console.log('error', error));
+    
+    
 }

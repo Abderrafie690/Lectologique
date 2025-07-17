@@ -1,20 +1,22 @@
-// script.js
 const tokenCookieName = "accesstoken";
-const registertBtn = document.getElementById("register-btn");
 const roleCookieName = "role";
-//const apiUrl = "http://localhost/lectologique/api/"; // ⚠️ Cambia según tu entorno
+const apiUrl = "http://localhost/lectologique/api/";
 
-//document.addEventListener('DOMContentLoaded', () => {
-  //const logoutBtn = document.getElementById("logout-btn");
-  //if (logoutBtn) {
-    registertBtn.addEventListener("click", register);
-  //}
-  function getRole(){
-    return getCookie(roleCookieName);
+
+
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", logout);
   }
 
-  //showAndHideElementsForRoles(); // Aplica visibilidad según roles
-//});
+  showAndHideElementsForRoles();
+
+  function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+}
+
+
 
 // --- TOKEN & ROLE ---
 function setToken(token) {
@@ -23,19 +25,15 @@ function setToken(token) {
 function getToken() {
   return getCookie(tokenCookieName);
 }
-
+function getRole() {
+  return getCookie(roleCookieName);
+}
 function isConnected() {
-  if(getToken() == null || getToken == undefined){
-    return false;
-  }
-  else{
-    return true;
-  }
+  return getToken() !== null && getToken() !== undefined && getToken() !== "";
 }
 
-
 // --- SIGNOUT ---
-function register() {
+function logout() {
   eraseCookie(tokenCookieName);
   eraseCookie(roleCookieName);
   window.location.reload();
@@ -71,39 +69,20 @@ function showAndHideElementsForRoles() {
   const userConnected = isConnected();
   const role = getRole();
 
-  let allElementsToEdit = document.querySelectorAll('[data-show]');
+  const allElementsToEdit = document.querySelectorAll('[data-show]');
   allElementsToEdit.forEach(element => {
     switch (element.dataset.show) {
       case 'disconnected':
-        if (userConnected) {
-          element.classList.add("d-none");
-        } else {
-          element.classList.remove("d-none");
-        }
+        element.classList.toggle("d-none", userConnected);
         break;
-
       case 'connected':
-        if (!userConnected) {
-          element.classList.add("d-none");
-        } else {
-          element.classList.remove("d-none");
-        }
+        element.classList.toggle("d-none", !userConnected);
         break;
-
       case 'admin':
-        if (!userConnected || role !== "admin") {
-          element.classList.add("d-none");
-        } else {
-          element.classList.remove("d-none");
-        }
+        element.classList.toggle("d-none", !userConnected || role !== "admin");
         break;
-
       case 'client':
-        if (!userConnected || role !== "client") {
-          element.classList.add("d-none");
-        } else {
-          element.classList.remove("d-none");
-        }
+        element.classList.toggle("d-none", !userConnected || role !== "client");
         break;
     }
   });
