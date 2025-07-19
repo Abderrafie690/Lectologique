@@ -1,12 +1,15 @@
 const tokenCookieName = "accesstoken";
 const roleCookieName = "role";
-const apiUrl = "http://localhost/lectologique/api/";
+const apiUrl = "https://127.0.0.1:8000/api/";
+
 
 
 
   const logoutBtn = document.getElementById("logout-btn");
+  
   if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);
+    getInfosUser();
   }
 
   showAndHideElementsForRoles();
@@ -96,21 +99,28 @@ function sanitizeHtml(text) {
   return temp.innerHTML;
 }
 
-/*// --- OBTENER DATOS DE USUARIO ---
+// --- OBTENER DATOS DE USUARIO ---
 function getInfosUser() {
-  const headers = new Headers();
-  headers.append("X-AUTH-TOKEN", getToken());
+  const token = getToken();
+  let myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + token);
 
-  fetch(apiUrl + "account/me", {
+  console.log("Token enviado al serveur:", token);
+
+  fetch("https://127.0.0.1:8000/api/account/me", {
     method: "GET",
-    headers: headers
+    headers: myHeaders
   })
-    .then((res) => res.ok ? res.json() : Promise.reject("Non connecté"))
-    .then((user) => {
-      console.log("Utilisateur:", user);
-    })
-    .catch((err) => {
-      console.error("Erreur utilisateur:", err);
-    });
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Impossible d'obtenir les infos");
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Utilisateur connecté:", data);
+  })
+  .catch(err => {
+    console.error("Erreur :", err);
+  });
 }
-*/

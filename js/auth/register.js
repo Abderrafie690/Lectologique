@@ -116,8 +116,8 @@ let requestOptions = {
     redirect: 'follow'
 };
 
-fetch("https://127.0.0.1:8000/api/registration", requestOptions)
-  
+fetch(apiUrl + "registration", requestOptions)
+
     .then(response => {
         if(response.ok){
             return response.json();
@@ -127,17 +127,19 @@ fetch("https://127.0.0.1:8000/api/registration", requestOptions)
         }
     })
     .then(result => {
-        alert("Bravo "+dataForm.get("prenom")+", vous êtes maintenant inscrit, vous pouvez vous connecter.");
-        document.location.href="/login";
-        console.log("Token guardado:", getCookie("accesstoken"));
-        const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKE_PAYLOAD.FAKE_SIGNATURE";
-        setCookie("accesstoken", fakeToken, 7);
-        setCookie("role", "admin", 7);
-        console.log(document.cookie); // Opcional si usas roles
+    // 👇 Guarda el token devuelto por el backend, si existe
+    if (result.token) {
+        setCookie("accesstoken", result.token, 7); // guarda el token real
+        setCookie("role", result.role || "admin", 7); // guarda rol si tu backend lo devuelve
+        console.log("Token guardado:", result.token);
+    } else {
+        console.warn("⚠️ Token no recibido en la respuesta del backend.");
+    }
 
-  
+    alert("Bravo " + dataForm.get("prenom") + ", vous êtes maintenant inscrit.");
+    document.location.href = "/login";
+})
 
-    })
     .catch(error => console.log('error', error));
     
     

@@ -7,18 +7,15 @@ const loginForm = document.getElementById("loginForm");
 
 btnlogin.addEventListener("click", checkCredentials);
 
-function checkCredentials(){
+function checkCredentials() {
     let dataForm = new FormData(loginForm);
 
-    
-    
-    
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     let raw = JSON.stringify({
-        "username": dataForm.get("email"),
-        "password": dataForm.get("password")
+        email: dataForm.get("email"),         // ⚠️ Debe coincidir con `username_path: email`
+        password: dataForm.get("password")
     });
 
     let requestOptions = {
@@ -28,29 +25,25 @@ function checkCredentials(){
         redirect: 'follow'
     };
 
-  fetch("https://127.0.0.1:8000/api/login", requestOptions) 
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Erreur lors de connexion"); // ⛔ Detiene aquí
-        }
-    })
-    .then(result => {
-        alert("Bravo vous êtes maintenant connecté.");
-        const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.FAKE_PAYLOAD.FAKE_SIGNATURE";
-        setCookie("accesstoken", fakeToken, 7);
-        setCookie("role", "admin", 7);
-        console.log(document.cookie); // Opcional si usas roles
-        document.location.href = "/login";
+    fetch("https://127.0.0.1:8000/api/login", requestOptions)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Erreur lors de connexion");
+            }
+        })
+        .then(result => {
+            alert("Bravo vous êtes maintenant connecté.");
 
-        console.log("Token guardado:", getCookie("accesstoken"));
-    })
-    .catch(error => {
-        console.error("Erreur attrapée :", error);
-        alert(error.message); // Muestra mensaje de error
-    });
+            setCookie("accesstoken", result.token, 7); // ⚠️ Aquí asegúrate que el backend responde con "token"
+            setCookie("role", "admin", 7);
 
-    
-    
+            console.log("Token guardado:", getCookie("accesstoken"));
+            document.location.href = "/login";
+        })
+        .catch(error => {
+            console.error("Erreur attrapée :", error);
+            alert(error.message);
+        });
 }
