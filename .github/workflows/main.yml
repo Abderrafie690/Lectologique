@@ -11,9 +11,10 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ftps-lectologiqueonline.alwaysdata.net
+        server: ftp-lectologiqueonline.alwaysdata.net
         username: lectologiqueonline
         password: ${{ secrets.ftp_password }}
+        protocol: ftps
         exclude: |
           **/.git*
           **/.git*/**
