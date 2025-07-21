@@ -4,7 +4,7 @@
   "description": "Frontend del proyecto Lectologique",
   "main": "index.html",
   "scripts": {
-    "start": "live-server",  
+    "start": "live-server",
     "build": "echo 'No build step defined'"
   },
   "author": "Tu Nombre o Alias",
@@ -17,5 +17,8 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
