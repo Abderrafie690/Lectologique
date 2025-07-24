@@ -1,0 +1,54 @@
+<!-- 🔷 Barre supérieure -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/dashboard">📘 Lectologique</a>
+    <div class="d-flex">
+      <a href="/dashboard" class="btn btn-outline-light me-2">
+        <i class="bi bi-house-fill"></i> Accueil
+      </a>
+      <a href="/logout" class="btn btn-outline-light">
+        <i class="bi bi-box-arrow-right"></i> Déconnexion
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- 📚 Contenu principal -->
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">📚 Mes livres</h2>
+    <a href="/add_book" class="btn btn-success">
+      <i class="bi bi-plus-circle me-1"></i> Ajouter un nouveau livre
+    </a>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- 📘 Livre 1 -->
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 rounded-4">
+        <img src="img/book1.jpg" class="card-img-top rounded-top-4" alt="Couverture du livre" />
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary fw-bold mb-3">Le Petit Prince</h5>
+          <ul class="list-unstyled small text-muted">
+            <li><i class="bi bi-person-fill text-primary me-1"></i> <strong>Auteur:</strong> Antoine de Saint-Exupéry</li>
+            <li><i class="bi bi-tags-fill text-success me-1"></i> <strong>Genre:</strong> Fable</li>
+            <li>
+              <i class="bi bi-bookmark-check-fill text-warning me-1"></i> 
+              <strong>État:</strong>
+              <span class="badge bg-success">Lu</span>
+            </li>
+          </ul>
+          <p class="text-muted mt-2 small">Un classique intemporel sur l’enfance, l’amour et la solitude.</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between flex-wrap gap-2 bg-light">
+          <a href="/book/1" class="btn btn-sm btn-outline-secondary">🔍 Voir le livre</a>
+          <a href="/edit_book/1" class="btn btn-sm btn-primary">✏️ Éditer</a>
+          <a href="/delete_book/1" class="btn btn-sm btn-danger">🗑️ Supprimer</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔻 Ajouter d'autres livres ici en copiant le bloc ci-dessus -->
+
+  </div>
+</div>

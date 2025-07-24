@@ -22,9 +22,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let html = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-primary">📚 Mes livres</h2>
-            <a href="/ajouter-livre.html" class="btn btn-success">
-                <i class="bi bi-plus-circle me-1"></i> Ajouter un nouveau livre
-            </a>
+          <a href="/add-book" class="btn btn-success">
+  <i class="bi bi-plus-circle me-1"></i> Ajouter un nouveau livre
+</a>
+
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         `;

@@ -1,4 +1,4 @@
-const apiUrl = "https://Lectologique.alwaysdata.net/api/";
+const apiUrl = "https://Lectologique.net/api/";
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchBooks();

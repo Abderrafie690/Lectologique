@@ -5,6 +5,9 @@ const apiUrl = "https://127.0.0.1:8000/api/";
 
 
 
+
+
+
   const logoutBtn = document.getElementById("logout-btn");
   
   if (logoutBtn) {
